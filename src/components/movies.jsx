@@ -78,11 +78,7 @@ class Movies extends Component {
     const movieType = currentGrene._id === "0" ? "" : currentGrene.name + " ";
 
     if (movieCount === 0) return <p>There are no movies in the database</p>;
-
-    console.log("sort Column before Ordering", sortColumn);
     const sortedList = _.orderBy(movies, [sortColumn.path], [sortColumn.order]);
-
-    console.log("sorted List", sortedList);
 
     const filterMovies = paginate(sortedList, currentPage, pageSize);
 

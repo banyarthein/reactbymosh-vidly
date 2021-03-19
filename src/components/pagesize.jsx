@@ -6,7 +6,9 @@ const PageSize = (props) => {
   return (
     <select className="form-select px-2">
       {pageSizeList.map((item) => (
-        <option value="{item}">{item}</option>
+        <option key={item} value="{item}">
+          {item}
+        </option>
       ))}
     </select>
   );
