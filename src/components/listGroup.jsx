@@ -10,7 +10,7 @@ const ListGroup = (props) => {
   } = props;
 
   return (
-    <ul className="list-group">
+    <ul className="list-group clickable">
       {genres.map((item) => (
         <li
           key={item[valueProperty]}
