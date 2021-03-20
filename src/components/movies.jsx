@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { getMovies } from "../services/fakeMovieService";
 import Pagination from "../components/pagination";
 import { paginate } from "../util/paginate";
-import ListGroup from "../components/listGroup";
+import ListGroup from "../components/common/listGroup";
 import { getGenres } from "../services/fakeGenreService";
 import PageSize from "../components/pagesize";
 import MoviesTable from "./moviesTable";
