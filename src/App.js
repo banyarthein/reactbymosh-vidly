@@ -1,11 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-import Movies from "./components/movies"
+import logo from "./logo.svg";
+import Movies from "./components/movies";
+import NavBar from "./components/common/navBar";
+import RoutingTable from "./components/common/routingTable";
+
+import "./App.css";
+
 function App() {
   return (
     <main className="container">
-      <h1>Header</h1>
-      <Movies></Movies>
+      <NavBar />
+      <RoutingTable />
     </main>
   );
 }
