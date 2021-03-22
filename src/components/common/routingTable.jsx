@@ -5,10 +5,12 @@ import Customers from "../customers";
 import Rental from "../rental";
 import NotFound from "../not-found";
 import MoviesForm from "./../movieForm";
+import LoginForm from "./../loginForm";
 
 const RoutingTable = () => {
   return (
     <Switch>
+      <Route path="/login" component={LoginForm}></Route>
       <Route path="/movies/:id" component={MoviesForm}></Route>
       <Route path="/movies" component={Movies}></Route>
       <Route path="/customers" component={Customers} />
