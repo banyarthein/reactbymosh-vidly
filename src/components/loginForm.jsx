@@ -11,12 +11,9 @@ class LoginForm extends Component {
   };
 
   handleChange = (e) => {
-    const myaccount = { ...this.state.account };
-    console.log("e.currentTarget.value", e.currentTarget.value);
-    myaccount.username = e.currentTarget.value;
-
-    console.log("myaccount", myaccount);
-    this.setState({ myaccount });
+    const account = { ...this.state.account };
+    account.username = e.currentTarget.value;
+    this.setState({ account });
   };
 
   render() {
