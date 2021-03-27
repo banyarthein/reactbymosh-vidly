@@ -6,6 +6,7 @@ import Rental from "../rental";
 import NotFound from "../not-found";
 import MoviesForm from "./../movieForm";
 import LoginForm from "./../loginForm";
+import Register from "./../register";
 
 const RoutingTable = () => {
   return (
@@ -14,6 +15,7 @@ const RoutingTable = () => {
       <Route path="/movies/:id" component={MoviesForm}></Route>
       <Route path="/movies" component={Movies}></Route>
       <Route path="/customers" component={Customers} />
+      <Route path="/register" component={Register} />
       <Route path="/rental" component={Rental}></Route>
       <Route path="/not-found" component={NotFound} />
       <Redirect from="/" exact to="/movies"></Redirect>

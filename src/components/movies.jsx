@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
+import { NavLink, Link } from "react-router-dom";
 
 import { getMovies } from "../services/fakeMovieService";
 import Pagination from "../components/pagination";
@@ -93,9 +94,18 @@ class Movies extends Component {
               genres={genres}
               onGenreChange={this.handleGenreSelect}
               currentGrene={currentGrene}
-            />
+            >
+              New Movie
+            </ListGroup>
           </div>
           <div className="col">
+            <Link
+              to={"/movies/new"}
+              className="btn btn-primary"
+              style={{ marginBottom: 20 }}
+            >
+              New Movie
+            </Link>
             <p>
               Currently showing{" "}
               <strong>
