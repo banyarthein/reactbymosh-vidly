@@ -15,7 +15,7 @@ const ListGroup = (props) => {
         <li
           key={item[valueProperty]}
           className={
-            item._id === selectedItem._id
+            selectedItem && item._id === selectedItem._id
               ? "list-group-item active"
               : "list-group-item"
           }

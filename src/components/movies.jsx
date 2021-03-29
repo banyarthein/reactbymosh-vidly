@@ -9,6 +9,7 @@ import ListGroup from "../components/common/listGroup";
 import { getGenres } from "../services/fakeGenreService";
 import PageSize from "../components/pagesize";
 import MoviesTable from "./moviesTable";
+import SearchBox from "./common/searchBox";
 
 const defaultGrene = { _id: "0", name: "All Genres" };
 
@@ -19,7 +20,8 @@ class Movies extends Component {
     pageSize: 3,
     pageSizeList: [3, 4, 5, 6, 7, 10, 20],
     currentPage: 1,
-    currentGrene: defaultGrene,
+    searchQuery: "",
+    currentGrene: null,
     sortColumn: { path: "title", order: "dec" },
   };
 
@@ -44,7 +46,11 @@ class Movies extends Component {
   };
 
   handleGenreSelect = (genre) => {
-    this.setState({ currentGrene: genre, currentPage: 1 });
+    this.setState({ currentGrene: genre, searchQuery: "", currentPage: 1 });
+  };
+
+  handleSearch = (query) => {
+    this.setState({ searchQuery: query, currentGrene: null, currentPage: 1 });
   };
 
   handleSort = (sortColumn) => {
@@ -64,20 +70,28 @@ class Movies extends Component {
       genres: genreFromList,
       pageSizeList,
       sortColumn,
+      searchQuery,
     } = this.state;
 
     let genres = [defaultGrene, ...genreFromList];
-
-    let movies = [...allMovies];
-
+    //let movies = [...allMovies];
     let { currentPage } = this.state;
 
-    if (currentGrene._id !== "0") {
+    let movies = allMovies;
+    if (searchQuery) {
+      console.log("searchQuery is ", searchQuery);
+      movies = allMovies.filter((m) =>
+        m.title.toLowerCase().startsWith(searchQuery.toLowerCase())
+      );
+    } else if (currentGrene && currentGrene._id !== "0") {
       movies = movies.filter((m) => m.genre._id === currentGrene._id);
     }
     movieCount = movies.length;
 
-    const movieType = currentGrene._id === "0" ? "" : currentGrene.name + " ";
+    const movieType =
+      currentGrene === null || currentGrene._id === "0"
+        ? ""
+        : currentGrene.name + " ";
 
     if (movieCount === 0) return <p>There are no movies in the database</p>;
     const sortedList = _.orderBy(movies, [sortColumn.path], [sortColumn.order]);
@@ -113,6 +127,11 @@ class Movies extends Component {
               </strong>
               movies
             </p>
+            <SearchBox
+              value={searchQuery}
+              onChange={this.handleSearch}
+            ></SearchBox>
+
             <MoviesTable
               movies={filterMovies}
               sortColumn={sortColumn}
