@@ -119,6 +119,7 @@ class Movies extends Component {
 
   render() {
     let { length: movieCount } = this.state.movies;
+    const { user } = this.props;
 
     const {
       pageSize,
@@ -154,13 +155,15 @@ class Movies extends Component {
             </ListGroup>
           </div>
           <div className="col">
-            <Link
-              to={"/movies/new"}
-              className="btn btn-primary"
-              style={{ marginBottom: 20 }}
-            >
-              New Movie
-            </Link>
+            {user && (
+              <Link
+                to={"/movies/new"}
+                className="btn btn-primary"
+                style={{ marginBottom: 20 }}
+              >
+                New Movie
+              </Link>
+            )}
             <p>
               Currently showing{" "}
               <strong>
